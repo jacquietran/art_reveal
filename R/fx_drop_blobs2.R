@@ -22,7 +22,9 @@ drop_blobs2 <- function(
     dplyr::distinct(group) |>
     dplyr::mutate(
       group_alpha = sample(
-        seq(0, 0.5, by = 0.025), dplyr::n(), replace = TRUE))
+        seq(0, 0.4, by = 0.025), dplyr::n(), replace = TRUE),
+      group_size = sample(
+        seq(0.6, 4, by = 0.02), dplyr::n(), replace = TRUE))
   
   data_mod <- dplyr::left_join(data, rel_group_aes, by = "group")
   
