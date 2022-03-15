@@ -24,7 +24,10 @@ drop_blobs2 <- function(
       group_alpha = sample(
         seq(0, 0.4, by = 0.025), dplyr::n(), replace = TRUE),
       group_size = sample(
-        seq(0.6, 4, by = 0.02), dplyr::n(), replace = TRUE))
+        seq(0.6, 4, by = 0.02), dplyr::n(), replace = TRUE),
+      group_linetype = dplyr::case_when(
+        group_size < 1.5 ~ "dotted",
+        TRUE           ~ "solid"))
   
   data_mod <- dplyr::left_join(data, rel_group_aes, by = "group")
   
