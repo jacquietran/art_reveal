@@ -33,6 +33,7 @@ drop_blobs <- function(
     dplyr::filter(set_num != 1)
   
   return(list(
+    "combined" = data_mod,
     "set1" = set1,
     "set2" = set2))
   
