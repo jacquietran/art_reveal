@@ -28,7 +28,8 @@ drop_blobs2 <- function(
       group_linetype = dplyr::case_when(
         group_size < 1.5 ~ "dotted",
         TRUE           ~ "solid"),
-      group_colour = sample(colours, dplyr::n(), replace = TRUE))
+      group_colour = sample(colours, dplyr::n(), replace = TRUE),
+      group_fill = sample(c(colours, bg), dplyr::n(), replace = TRUE))
   
   data_mod <- dplyr::left_join(data, rel_group_aes, by = "group")
   
