@@ -22,12 +22,12 @@ upper_limit <- 31
 # Create background grain
 grain_data <- mimic_grain2(
   seed_num = initial_seed, lower = lower_limit, upper = upper_limit,
-  grain = 200, n_lines = 150, colours = grain_colours)
+  grain = 800, n_lines = 150, colours = grain_colours)
 
+# Drop blobs
 set.seed(initial_seed)
 seed_vec <- sample(seq(1, 5000000, by = 1), n_tiles)
 
-# Drop blobs
 blobs_tile1 <- drop_blobs2(
   seed_num = seed_vec[1], bg = bg_colour, colours = line_colours,
   x_lower = 1, x_upper = 9, y_lower = 1, y_upper = 9)
@@ -78,7 +78,7 @@ p <- ggplot2::ggplot() +
   ggplot2::geom_point(
     data = grain_data,
     ggplot2::aes(x = x, y = y, size = point_size, colour = point_colour),
-    alpha = 0.4) +
+    shape = 16, stroke = 0, alpha = 0.55) +
   ggforce::geom_diagonal_wide(
       data = blobs_combined,
       ggplot2::aes(x = x, y = y, group = grouping_var, size = group_size,

@@ -7,12 +7,12 @@ source(here::here("R/fx_grain2.R"))
 
 # General params
 iteration_id <- "reveal_0029"
-initial_seed <- 32129
+initial_seed <- 318729
 n_tiles <- 9
-bg_colour <- "#B2AA8E"
-line_colours <- c("#292929", "#474747", "#797153")
+bg_colour <- "#002F3D"
+line_colour <- "#F18F01"
 
-grain_colours <- c("#BF4E30", "#B97C5F", "#876764")
+grain_colours <- c("#3581B8", "#F97068", "#EBE9E9")
 
 lower_limit <- -1
 upper_limit <- 31
@@ -22,46 +22,46 @@ upper_limit <- 31
 # Create background grain
 grain_data <- mimic_grain2(
   seed_num = initial_seed, lower = lower_limit, upper = upper_limit,
-  grain = 200, n_lines = 150, colours = grain_colours)
+  grain = 600, n_lines = 100, colours = grain_colours)
 
+# Drop blobs
 set.seed(initial_seed)
 seed_vec <- sample(seq(1, 5000000, by = 1), n_tiles)
 
-# Drop blobs
 blobs_tile1 <- drop_blobs2(
-  seed_num = seed_vec[1], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[1], bg = bg_colour, colours = line_colour,
   x_lower = 1, x_upper = 9, y_lower = 1, y_upper = 9)
 
 blobs_tile2 <- drop_blobs2(
-  seed_num = seed_vec[2], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[2], bg = bg_colour, colours = line_colour,
   x_lower = 11, x_upper = 19, y_lower = 1, y_upper = 9)
 
 blobs_tile3 <- drop_blobs2(
-  seed_num = seed_vec[3], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[3], bg = bg_colour, colours = line_colour,
   x_lower = 21, x_upper = 29, y_lower = 1, y_upper = 9)
 
 blobs_tile4 <- drop_blobs2(
-  seed_num = seed_vec[4], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[4], bg = bg_colour, colours = line_colour,
   x_lower = 1, x_upper = 9, y_lower = 11, y_upper = 19)
 
 blobs_tile5 <- drop_blobs2(
-  seed_num = seed_vec[5], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[5], bg = bg_colour, colours = line_colour,
   x_lower = 11, x_upper = 19, y_lower = 11, y_upper = 19)
 
 blobs_tile6 <- drop_blobs2(
-  seed_num = seed_vec[6], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[6], bg = bg_colour, colours = line_colour,
   x_lower = 21, x_upper = 29, y_lower = 11, y_upper = 19)
 
 blobs_tile7 <- drop_blobs2(
-  seed_num = seed_vec[7], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[7], bg = bg_colour, colours = line_colour,
   x_lower = 1, x_upper = 9, y_lower = 21, y_upper = 29)
 
 blobs_tile8 <- drop_blobs2(
-  seed_num = seed_vec[8], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[8], bg = bg_colour, colours = line_colour,
   x_lower = 11, x_upper = 19, y_lower = 21, y_upper = 29)
 
 blobs_tile9 <- drop_blobs2(
-  seed_num = seed_vec[9], bg = bg_colour, colours = line_colours,
+  seed_num = seed_vec[9], bg = bg_colour, colours = line_colour,
   x_lower = 21, x_upper = 29, y_lower = 21, y_upper = 29)
 
 # Merge tiles together
@@ -78,15 +78,14 @@ p <- ggplot2::ggplot() +
   ggplot2::geom_point(
     data = grain_data,
     ggplot2::aes(x = x, y = y, size = point_size, colour = point_colour),
-    alpha = 0.4) +
+    shape = 16, stroke = 0, alpha = 0.55) +
   ggforce::geom_diagonal_wide(
       data = blobs_combined,
       ggplot2::aes(x = x, y = y, group = grouping_var, size = group_size,
-                   linetype = group_linetype, colour = group_colour,
-                   fill = group_fill),
-      strength = 0.5, alpha = 1, radius = ggplot2::unit(7, 'mm')) +
+                   linetype = group_linetype),
+      strength = 0.7, colour = line_colour, alpha = 0,
+      radius = ggplot2::unit(8, 'mm')) +
   ggplot2::scale_colour_identity() +
-  ggplot2::scale_fill_identity() +
   ggplot2::scale_size_identity() +
   ggplot2::scale_linetype_identity() +
   ggplot2::coord_fixed(
