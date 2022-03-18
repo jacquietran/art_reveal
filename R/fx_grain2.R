@@ -12,7 +12,8 @@ mimic_grain2 <- function(seed_num, lower, upper, grain, n_lines, colours){
     dplyr::mutate(
       point_size = sample(
         seq(0.05, 0.7, by = 0.05), dplyr::n(), replace = TRUE, prob = weights),
-      point_colour = sample(colours, dplyr::n(), replace = TRUE))
+      point_colour = sample(colours, dplyr::n(), replace = TRUE),
+      to_delete = sample(c("yes", "no"), dplyr::n(), replace = TRUE))
   
   return(data)
   
