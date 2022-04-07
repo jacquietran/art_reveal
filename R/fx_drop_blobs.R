@@ -16,7 +16,7 @@ drop_blobs <- function(
     y = rep(
       sample(c(y_lower, y_upper), num_points / 2, replace = TRUE), each = 2),
     group = rep(seq(1, num_groups, by = 1), each = 4),
-    hex_fill = sample(colour_vec, num_points, replace = TRUE))
+    hex_fill = sample(palette, num_points, replace = TRUE))
   
   set.seed(seed_num)
   rel_groups_sets <- data |>
