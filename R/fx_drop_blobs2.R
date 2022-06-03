@@ -1,10 +1,19 @@
 drop_blobs2 <- function(
-  seed_num, bg, x_lower, x_upper, y_lower, y_upper, colours){
+  seed_num, bg, x_lower, x_upper, y_lower, y_upper, colours,
+  groups_min, groups_max){
   
   # Requires {scales}, {tibble}, and {dplyr}
   
+  if(missing(groups_min)){
+    groups_min <- 5
+  }
+  
+  if(missing(groups_max)){
+    groups_max <- 8
+  }
+  
   set.seed(seed_num)
-  num_groups <- sample(seq(5, 8, by = 1), 1)
+  num_groups <- sample(seq(groups_min, groups_max, by = 1), 1)
   
   num_points <- num_groups * 4
   
