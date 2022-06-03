@@ -16,7 +16,7 @@ grain_colours <- c("#2541B2", "#89555E", "#FA420F", "#FDA187")
 # Create data ------------------------------------------------------------------
 
 blobs_combined <- blobs_and_tiles(
-  n_tiles = 400, seed_vec = seq(1, 5000000, by = 1),
+  arrangement = "20x20", seed_vec = seq(1, 5000000, by = 1),
   bg = bg_colour, colours = line_colour)
 
 # Create background grain

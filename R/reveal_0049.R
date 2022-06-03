@@ -14,7 +14,7 @@ line_colour <- "#2541B2"
 # Create data ------------------------------------------------------------------
 
 blobs_combined <- blobs_and_tiles(
-  n_tiles = 225, seed_vec = initial_seed, bg = bg_colour, colours = line_colour)
+  arrangement = "15x15", seed_vec = initial_seed, bg = bg_colour, colours = line_colour)
 
 # Build plot -------------------------------------------------------------------
 
